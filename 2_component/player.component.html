@@ -1,0 +1,95 @@
+<mat-accordion id="player-container">
+  <mat-expansion-panel
+    [expanded] = "playOpen"
+    (opened) = "playOpen = true"
+    (closed) = "playOpen = false"
+    (afterCollapse)="resizeContainer()"
+    (afterExpand)="resizeContainer()">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ playOpen? 'Close' : 'Open'}} Draft Player
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div id="player-content" class="player">
+      <div id="loom-container" class="column player-field">
+        <div id="loom-status" class="loom-field">
+          <ng-container *ngIf="pls.pds.loom_online.val; else loomOffline">
+            <p class="online data-display">Loom: Online</p>
+          </ng-container>
+          <ng-template #loomOffline>
+            <p class="offline data-display">Loom: Offline</p>
+          </ng-template>
+        </div>
+
+        <mat-form-field id="loom-warps" class="loom-field">
+          <mat-label>Warps</mat-label>
+          <input matInput value="{{pls.loom.warps}}" (change)="pls.changeLoomWidth($event)" type="number">
+        </mat-form-field>
+
+        <mat-slide-toggle id="loom-draft-tiling" class="loom-field"
+          checked="{{pls.loom.draftTiling}}"
+          (change)="pls.toggleDraftTiling($event)">
+            Draft Tiling
+        </mat-slide-toggle>
+
+        <div id="startstop-container" class="loom-field">
+          <button mat-button id="startstop" 
+            (click)="pls.toggleWeaving()" 
+            [disabled]="!pls.readyToWeave">
+            <div *ngIf="!pls.weaving; else isWeaving">Start Weaving</div>
+            <ng-template #isWeaving>Stop Weaving</ng-template>
+          </button>
+        </div>
+      </div>
+      
+            <!-- [matTooltip]="`Loom must be online AND one pedal must be set to 'forward'`"> -->
+
+      <div class="column">
+        <!-- <p>Ready to weave? {{pls.pedals.readyToWeave}}</p> -->
+        <div id="pedals-container" class="player-field">
+          <h2 class="player-field-header">Pedals </h2>
+          <!-- <p>{{pls.pedals}}</p> -->
+          <div class="pedal-array pedals-field">
+            <ng-container *ngFor="let p of pls.pedals">
+              <div class="pedal-box" id="pedal-{{p.id}}">
+                <div class="pedal-box-row">
+                  <span class="pedal-field">{{p.id}}</span>
+                  <span class="pedal-field">{{p.u_name}}</span>
+                </div>
+                <div class="pedal-box-row pedal-state">
+                  <span class="pedal-field-label">State: </span>
+                  <span class="pedal-field">{{p.state}}</span>
+                </div>
+                <div class="pedal-box-row">
+                  <mat-form-field>
+                    <mat-label>Operation</mat-label>
+                    <mat-select 
+                    (selectionChange)="pls.setPedalOp($event, p)">
+                      <ng-container *ngIf="pls.pedalOps.pairs[p.id]">
+                        <mat-option [value]="pls.pedalOps.pairs[p.id].name">
+                          {{pls.pedalOps.pairs[p.id].name}}
+                        </mat-option>
+                      </ng-container>
+                      <mat-option *ngFor="let op of pls.pedalOps.unpairedOps" 
+                        [value]="op.name">
+                        {{op.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <!-- <span class="pedal-field-label">Operation: </span>
+                  <span class="pedal-field">{{p.op}}</span> -->
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        
+        <div id="draft-container" class="player-field">
+          <h2 class="player-field-header">Draft</h2>
+          <canvas class="draft-field" id="active-draft-canvas"></canvas>
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -1,0 +1,123 @@
+.player-field {
+  border: #666 1px;
+  border-right-style: solid;
+}
+
+.player-field-header {
+  padding: 10px;
+  margin: unset;
+  background: #3f51b5;
+  color: #ffffff;
+}
+
+.player { height: inherit; }
+
+.column {
+  float: left;
+  padding: unset;
+  height: inherit;
+}
+
+.loom-field, .pedals-field, .draft-field {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.online {
+  background-color: rgb(58, 255, 19);
+  color: #222222;
+}
+
+.offline {
+  background-color: rgb(150, 0, 0);
+  color: #ffffff;
+}
+
+.pedal-array, .active-draft, .status-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.pedal-array {
+  margin: 10px;
+}
+
+.pedal-box {
+  background-color: #bbc5ff;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.pedal-box, .data-display, #loom-container {
+  padding: 10px;
+}
+
+.pedal-state {
+  font-size: x-small;
+  color: #444444;
+}
+
+#loom-container {
+  padding-right: 20px;
+}
+
+#draft-container {
+  background-color: rgb(214, 214, 214);
+}
+
+#active-draft-canvas {
+  padding: 10px;
+}
+
+.pedal-box-row > .mat-form-field, .mat-option {
+  width: 130px;
+}
+
+.pedal-field, .pedal-field-label {
+  padding: 2px;
+}
+
+.mat-button {
+  background-color: #ff4081;
+  color: white;
+  width: inherit;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.mat-button.mat-button-disabled {
+  background-color: #fd6d9d;
+  color: rgba(255, 255, 255, 0.50);
+  
+}
+
+.mat-expansion-panel-header, 
+.mat-expansion-panel-header.mat-expanded:focus {
+  background: #121f6b;
+}
+
+.mat-expansion-panel-body {
+  padding: 0px;
+}
+
+.mat-expansion-panel, .mat-accordion, .mat-expansion-panel-header,
+.mat-accordion .mat-expansion-panel:last-of-type, 
+.mat-accordion .mat-expansion-panel:first-of-type  {
+  border-radius: 0pt;
+  border-bottom-left-radius: 0pt;
+  border-bottom-right-radius: 0pt;
+  border-top-left-radius: 0pt;
+  border-top-right-radius: 0pt;
+}
+
+.mat-expansion-panel-header:hover, 
+.mat-expansion-panel-header.mat-expanded:hover,
+.mat-expansion-panel:not(.mat-expanded), 
+.mat-expansion-panel-header:hover:not([aria-disabled=true])   {
+  background: #566be2;
+}
+
+.mat-expansion-panel-header-title, .mat-expansion-indicator{
+  color: white;
+}
